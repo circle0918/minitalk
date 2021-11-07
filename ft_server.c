@@ -6,7 +6,7 @@
 /*   By: yyuan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 21:40:42 by yyuan             #+#    #+#             */
-/*   Updated: 2021/11/07 20:12:22 by yyuan            ###   ########.fr       */
+/*   Updated: 2021/11/07 21:31:14 by yyuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -24,12 +24,12 @@ void  server_action(int sig, siginfo_t *siginfo, void *text)
 		if(sig == SIGUSR1)
 		{
 			 c |= 1<<i;
-			printf("1 in : %d\n",c);
+//			printf("1 in : %d\n",c);
 		}
 		else if (sig == SIGUSR2)
 		{
 		//	c |= 0<<i;
-			printf("0 in : %d\n",c);
+//			printf("0 in : %d\n",c);
 		}
 		i++;
 	}
