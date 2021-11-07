@@ -6,7 +6,7 @@
 /*   By: yyuan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 15:54:59 by yyuan             #+#    #+#             */
-/*   Updated: 2021/11/07 20:01:16 by yyuan            ###   ########.fr       */
+/*   Updated: 2021/11/07 21:39:39 by yyuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,41 @@ void  client_action(int sig, siginfo_t *siginfo, void *text)
 {
 	kill(s_pid, SIGUSER1);
 }*/
+
+/*void *ft_while(char *str)
+{
+}*/
+
 void *ft_kill(int pid, char *arg2)
 {
-	static char c;
+	char c;
 //	kill(pid,SIGUSR1);
-	int i = 0;
-	c= arg2[0];
-	while(i<8)
+	int i;
+	int j = 0;
+	
+	while(arg2[j]!= '\0')
 	{
-		int check = c >> i& 1;
-//		printf ("check : %d\n", check);
-		if(check)   //拿到最低位 c向右移i位与1并。是否是1
+		c= arg2[j];
+//		printf("c:   %c\n",c);
+		i = 0;
+		while(i<8)
 		{
-		 	kill(pid,SIGUSR1);
-//			printf("sent 1\n");
-		}
-		else
-		{kill(pid,SIGUSR2);
+			int check = c >> i& 1;
+//		printf ("check : %d\n", check);
+			if(check)   //拿到最低位 c向右移i位与1并。是否是1
+			{
+		 		kill(pid,SIGUSR1);
+//				printf("sent 1\n");
+			}
+			else
+			{
+				kill(pid,SIGUSR2);
 //			printf("sent 0\n");
-		}	
-		i++;
-		sleep(1);
+			}	
+			i++;
+			usleep(10);
+		}
+		j++;
 	}
 }
 
