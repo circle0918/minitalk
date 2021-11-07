@@ -6,14 +6,14 @@
 /*   By: yyuan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 15:54:59 by yyuan             #+#    #+#             */
-/*   Updated: 2021/11/07 22:21:44 by yyuan            ###   ########.fr       */
+/*   Updated: 2021/11/07 23:30:32 by yyuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
-void ft_kill(int pid, char c);
+void ft_kill(int pid, unsigned char c);
 
 void  client_action(int sig, siginfo_t *siginfo, void *text)
 {
@@ -23,6 +23,7 @@ void  client_action(int sig, siginfo_t *siginfo, void *text)
 		count++;
 	else if(sig == SIGUSR2)
 	{
+		write(1,"Received ",9);
 		ft_putnbr_fd(count,1);
 		write(1,"\n",1);
 		count = 0;
@@ -33,19 +34,22 @@ void  client_action(int sig, siginfo_t *siginfo, void *text)
 
 void ft_while(int pid, char *str)
 {
-	char c;
+	unsigned char c;
 	int j = 0;
+//	int len;
+
+//	len = ft_strlen(str[j])+1;
 	
-	while (str[j] != '\0')
+	while (str[j])
 	{
 		c= str[j];
 		ft_kill(pid, c);
 		j++;
 	}
-
+	ft_kill(pid, '\0');
 }
 
-void ft_kill(int pid, char c)
+void ft_kill(int pid, unsigned char c)
 {
 	int i;
 //printf("c:   %c\n",c);
@@ -65,7 +69,7 @@ void ft_kill(int pid, char c)
 //	printf("sent 0\n");
   		}	
   		i++;
-  		usleep(50);
+  		usleep(100);
   	}
 }
 

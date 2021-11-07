@@ -6,7 +6,7 @@
 /*   By: yyuan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 21:40:42 by yyuan             #+#    #+#             */
-/*   Updated: 2021/11/07 21:31:14 by yyuan            ###   ########.fr       */
+/*   Updated: 2021/11/07 23:31:07 by yyuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -15,8 +15,10 @@ void  server_action(int sig, siginfo_t *siginfo, void *text)
 {
 //	if(sig == SIGUSR1);
 //		write(1,"hello\n",6);
-	static char c = 0;
+	static unsigned char c = 0;
 	static int i = 0;
+	static pid_t client_pid = 0;
+
 //	printf("sig : %d\n",sig);
 //	printf("i : %d\n",i);
 	if (i!= 8)
@@ -34,10 +36,23 @@ void  server_action(int sig, siginfo_t *siginfo, void *text)
 		i++;
 	}
 	if(i == 8)
-	{
-		write(1,&c,1);
+	{	
 		i = 0;
+		
+		client_pid = siginfo->si_pid;
+//		printf("client in server : %d\n", client_pid);
+		if (c == '\0')
+   		{
+			kill(client_pid, SIGUSR2);
+			//printf("to client sig2\n");
+			client_pid = 0;
+			return ;
+		} //only take care of last '\0', no need to print
+
+		write(1,&c,1);
 		c = 0;
+   		kill(client_pid, SIGUSR1);
+//		printf("to client sig1\n");
 	}	
 }
 int main(void)
