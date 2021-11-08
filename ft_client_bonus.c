@@ -6,7 +6,7 @@
 /*   By: yyuan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 15:54:59 by yyuan             #+#    #+#             */
-/*   Updated: 2021/11/08 01:17:46 by yyuan            ###   ########.fr       */
+/*   Updated: 2021/11/08 01:32:26 by yyuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	ft_kill(int pid, unsigned char c);
 void	ft_putnbr_fd(int n, int fd);
-int			ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 
 int	ft_strlen(char *str)
 {
@@ -32,8 +32,8 @@ void	client_action(int sig, siginfo_t *siginfo, void *text)
 {
 	static int	count = 0;
 
-	(void) (siginfo);
-	(void) (text);
+	(void)(siginfo);
+	(void)(text);
 	if (sig == SIGUSR1)
 		count++;
 	else if (sig == SIGUSR2)

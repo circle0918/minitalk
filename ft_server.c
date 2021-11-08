@@ -6,7 +6,7 @@
 /*   By: yyuan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 21:40:42 by yyuan             #+#    #+#             */
-/*   Updated: 2021/11/08 00:30:54 by yyuan            ###   ########.fr       */
+/*   Updated: 2021/11/08 01:32:52 by yyuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -19,8 +19,8 @@ void	server_action(int sig, siginfo_t *siginfo, void *text)
 	static char	c = 0;
 	static int	i = 0;
 
-	(void) (siginfo);
-	(void) (text);
+	(void)(siginfo);
+	(void)(text);
 	if (i != 8)
 	{
 		if (sig == SIGUSR1)

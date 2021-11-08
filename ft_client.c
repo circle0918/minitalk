@@ -6,7 +6,7 @@
 /*   By: yyuan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 15:54:59 by yyuan             #+#    #+#             */
-/*   Updated: 2021/11/08 00:59:05 by yyuan            ###   ########.fr       */
+/*   Updated: 2021/11/08 01:31:43 by yyuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	ft_kill(int pid, char c);
 void	ft_putnbr_fd(int n, int fd);
-int			ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 
 int	ft_strlen(char *str)
 {
