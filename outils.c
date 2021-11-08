@@ -6,20 +6,20 @@
 /*   By: yyuan <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 00:13:22 by yyuan             #+#    #+#             */
-/*   Updated: 2021/11/07 16:28:11 by yyuan            ###   ########.fr       */
+/*   Updated: 2021/11/08 00:55:33 by yyuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <signal.h>
 
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }
+
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned	int	nb;
+	unsigned int	nb;
 
 	if (n < 0)
 	{
@@ -33,25 +33,15 @@ void	ft_putnbr_fd(int n, int fd)
 	ft_putchar_fd(((nb % 10) + '0'), fd);
 }
 
-int ft_strlen(char *str)
-{
-	int l;
-
-	l = 0;
-	while(str[l]!='\0')
-		l++;
-	return (l);
-}
-
 static int	ft_is_space(char c)
 {
-	return (c == ' ' || c == '\n' || c == '\t' ||
-			c == '\v' || c == '\f' || c == '\r');
+	return (c == ' ' || c == '\n' || c == '\t'
+		|| c == '\v' || c == '\f' || c == '\r');
 }
 
-static	int	return_res(const char *s, int neg, long int res)
+static int	return_res(const char *s, int neg, long int res)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (s[count] && s[count] >= '0' && s[count] <= '9')
@@ -66,11 +56,11 @@ static	int	return_res(const char *s, int neg, long int res)
 		return (neg * res);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	long	int		res;
+	long int		res;
 	int				neg;
-	const	char	*s;
+	const char		*s;
 
 	neg = 1;
 	res = 0;
@@ -91,5 +81,5 @@ int			ft_atoi(const char *str)
 		res = res * 10 + (*str - 48);
 		str++;
 	}
-	return (int)(return_res(s, neg, res));
+	return ((int)(return_res(s, neg, res)));
 }
